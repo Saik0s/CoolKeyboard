@@ -1,0 +1,29 @@
+BUNDLE_IDENTIFIER_PREFIX = "com.igortarasenko."
+PROJECT_NAME = "CoolKeyboard"
+
+EMPTY_CONFIGS = {
+    'Debug': {},
+    'Release': {},
+}
+
+CPLUSPLUS_POD_CONFIGS = {
+    'CLANG_CXX_LANGUAGE_STANDARD': "c++11",
+    'CLANG_CXX_LIBRARY': "libc++",
+    'SKIP_INSTALL': "YES",
+}
+
+BASE_BUILD_CONFIGURATIONS = {
+    'SDKROOT': "iphoneos",
+    'SUPPORTED_PLATFORMS': "iphonesimulator iphoneos",
+}
+
+DEBUG_BUILD_CONFIGURATIONS = {
+}
+
+RELEASE_BUILD_CONFIGURATIONS = {
+}
+
+DEFAULT_BUILD_CONFIGURATIONS = {
+    'Debug': flatten_dicts(BASE_BUILD_CONFIGURATIONS, DEBUG_BUILD_CONFIGURATIONS),
+    'Release': flatten_dicts(BASE_BUILD_CONFIGURATIONS, RELEASE_BUILD_CONFIGURATIONS)
+}
