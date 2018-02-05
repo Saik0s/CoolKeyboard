@@ -1,9 +1,8 @@
 //
-//  CoolKeyboardTests.swift
-//  CoolKeyboardTests
-//
-//  Created by Igor Tarasenko on 15/01/18.
-//  Copyright © 2018 Igor Tarasenko. All rights reserved.
+// CoolKeyboardTests.swift
+// Created by Igor Tarasenko on 05/02/18.
+// Copyright © 2018 Igor Tarasenko
+// Licensed under the MIT license, see LICENSE.md file
 //
 
 import XCTest
