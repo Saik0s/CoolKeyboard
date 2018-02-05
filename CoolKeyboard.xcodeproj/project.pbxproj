@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B27254CF200D081700EF2C5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27254CE200D081700EF2C5B /* AppDelegate.swift */; };
-		B27254D1200D081700EF2C5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27254D0200D081700EF2C5B /* ViewController.swift */; };
-		B27254D4200D081700EF2C5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B27254D2200D081700EF2C5B /* Main.storyboard */; };
 		B27254D6200D081700EF2C5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B27254D5200D081700EF2C5B /* Assets.xcassets */; };
-		B27254D9200D081700EF2C5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B27254D7200D081700EF2C5B /* LaunchScreen.storyboard */; };
 		B27254E4200D081700EF2C5B /* CoolKeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27254E3200D081700EF2C5B /* CoolKeyboardTests.swift */; };
 		B27254F5200D469400EF2C5B /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27254F4200D469400EF2C5B /* KeyboardViewController.swift */; };
 		B27254F9200D469400EF2C5B /* Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B27254F2200D469400EF2C5B /* Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B2FCC0022028AE2900962D18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2FCC0012028AE2900962D18 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,10 +49,7 @@
 /* Begin PBXFileReference section */
 		B27254CB200D081700EF2C5B /* CoolKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoolKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27254CE200D081700EF2C5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B27254D0200D081700EF2C5B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B27254D3200D081700EF2C5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B27254D5200D081700EF2C5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B27254D8200D081700EF2C5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B27254DA200D081700EF2C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B27254DF200D081700EF2C5B /* CoolKeyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoolKeyboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27254E3200D081700EF2C5B /* CoolKeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolKeyboardTests.swift; sourceTree = "<group>"; };
@@ -62,6 +57,7 @@
 		B27254F2200D469400EF2C5B /* Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Keyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27254F4200D469400EF2C5B /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		B27254F6200D469400EF2C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2FCC0012028AE2900962D18 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,11 +109,9 @@
 			isa = PBXGroup;
 			children = (
 				B27254CE200D081700EF2C5B /* AppDelegate.swift */,
-				B27254D0200D081700EF2C5B /* ViewController.swift */,
-				B27254D2200D081700EF2C5B /* Main.storyboard */,
 				B27254D5200D081700EF2C5B /* Assets.xcassets */,
-				B27254D7200D081700EF2C5B /* LaunchScreen.storyboard */,
 				B27254DA200D081700EF2C5B /* Info.plist */,
+				B2FCC0012028AE2900962D18 /* LaunchScreen.storyboard */,
 			);
 			path = CoolKeyboard;
 			sourceTree = "<group>";
@@ -247,9 +241,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B27254D9200D081700EF2C5B /* LaunchScreen.storyboard in Resources */,
 				B27254D6200D081700EF2C5B /* Assets.xcassets in Resources */,
-				B27254D4200D081700EF2C5B /* Main.storyboard in Resources */,
+				B2FCC0022028AE2900962D18 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +267,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B27254D1200D081700EF2C5B /* ViewController.swift in Sources */,
 				B27254CF200D081700EF2C5B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,25 +301,6 @@
 			targetProxy = B27254F7200D469400EF2C5B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B27254D2200D081700EF2C5B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B27254D3200D081700EF2C5B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B27254D7200D081700EF2C5B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B27254D8200D081700EF2C5B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B27254E6200D081700EF2C5B /* Debug */ = {
