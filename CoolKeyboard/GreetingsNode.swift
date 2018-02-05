@@ -10,20 +10,12 @@ import AsyncDisplayKit
 
 public class GreetingsNode: ASDisplayNode {
     private enum Sizes {
-        static let avatar: CGSize = CGSize(width: 70, height: 70)
-        static let button: CGSize = CGSize(width: 30, height: 30)
+        static let inputField: CGSize = CGSize(width: 100, height: 30)
+        static let settingsButton: CGSize = CGSize(width: 70, height: 30)
     }
 
-//    private let avatar: ASNetworkImageNode = ASNetworkImageNode()
-//    private let firstName: ASTextNode = ASTextNode()
-//    private let lastName: ASTextNode = ASTextNode()
-//    private let city: ASTextNode = ASTextNode()
-//    private let country: ASTextNode = ASTextNode()
-//    private let streetName: ASTextNode = ASTextNode()
-//    private let houseNumber: ASTextNode = ASTextNode()
-//    private let username: ASTextNode = ASTextNode()
-//    private let sex: ASTextNode = ASTextNode()
-//    private let button: ASButtonNode = ASButtonNode()
+    private let textInput: ASEditableTextNode = ASEditableTextNode()
+    private let settings: ASButtonNode = ASButtonNode()
 
     public override init() {
         super.init()
@@ -34,51 +26,34 @@ public class GreetingsNode: ASDisplayNode {
 
     private func setupNodes() {
         backgroundColor = .white
-//        stylize(as: .defaultContainer)
-//        avatar.stylize(as: .userAvatar(URL(string: "https://api.24coms.com/demo/users/5/picture")))
-//        firstName.stylize(as: .userDefault(user.firstName))
-//        lastName.stylize(as: .userDefault(user.lastName))
-//        city.stylize(as: .userDefault("city: \(user.city)"))
-//        country.stylize(as: .userDefault("country: \(user.country)"))
-//        streetName.stylize(as: .userDefault("street: \(user.streetName)"))
-//        houseNumber.stylize(as: .userDefault("house: \(user.houseNumber)"))
-//        username.stylize(as: .userDefault("username: \(user.username)"))
-//        sex.stylize(as: .userDefault("sex: \(user.sex)"))
-//        button.stylize(as: .remove)
+
+        settings.setTitle("Settings", with: nil, with: .black, for: .normal)
+        settings.addTarget(self, action: #selector(settingsPressed), forControlEvents: .touchUpInside)
+    }
+
+    @objc private func settingsPressed() {
+        let preferencePath: String = "App-Prefs:root=General&path=Keyboard"
+
+        if let url = URL(string: preferencePath) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
 
     public override func layoutSpecThatFits(_: ASSizeRange) -> ASLayoutSpec {
-//        let mainStack: ASStackLayoutSpec = ASStackLayoutSpec.vertical()
-//        let headerStack: ASStackLayoutSpec = ASStackLayoutSpec.horizontal()
-//        let nameStack: ASStackLayoutSpec = ASStackLayoutSpec.vertical()
-//
-//        avatar.style.preferredSize = Sizes.avatar
-//        avatar.style.spacingAfter = 5.0
-//
-//        nameStack.style.flexGrow = 1.0
-//
-//        button.style.preferredSize = Sizes.button
-//
-//        nameStack.alignItems = .start
-//        nameStack.children = [firstName, lastName]
-//
-//        headerStack.alignItems = .center
-//        headerStack.children = [avatar, nameStack, button]
-//
-//        mainStack.children = [
-//            headerStack,
-//            city,
-//            country,
-//            streetName,
-//            houseNumber,
-//            username,
-//            sex
-//        ]
-//        return ASInsetLayoutSpec(
-//            insets: UIEdgeInsets(top: 15, left: 10, bottom: 0, right: 10),
-//            child: mainStack
-//        )
-        return ASStackLayoutSpec.vertical()
+        textInput.style.preferredSize = Sizes.inputField
+        settings.style.preferredSize = Sizes.settingsButton
+
+        let stackLayout: ASStackLayoutSpec = ASStackLayoutSpec.vertical()
+        stackLayout.children = [textInput, settings]
+        stackLayout.style.flexGrow = 1
+        stackLayout.alignItems = .center
+        stackLayout.justifyContent = .center
+
+        return stackLayout
     }
 
     public override func animateLayoutTransition(_ context: ASContextTransitioning) {
