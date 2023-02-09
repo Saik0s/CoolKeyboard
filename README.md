@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/Saik0s/Whisperboard">
-    <img src="App/Resources/Assets.xcassets/AppIcon.appiconset/ios-marketing.png" width="80">
+    <img src="App/Resources/Images.xcassets/AppIcon.appiconset/iTunesArtwork@2x.png" width="80">
   </a>
 
   <h3 align="center">Cool Keyboard</h3>
@@ -27,7 +27,7 @@
 ## Features
 - Multiple keyboard layouts with unique unicode symbols.
 - Easy to use and switch between keyboard layouts.
-- Compatible with all iOS devices running iOS 11 and above.
+- Compatible with all iOS devices running iOS 14 and above.
 
 ### Requirements
 - Xcode 14.0+
@@ -45,10 +45,7 @@
 4. To switch between keyboard layouts, tap the globe icon on the bottom left corner of the keyboard.
 
 ## Keyboard Layouts
-- Emoji Keyboard: A keyboard layout featuring all the popular emoji unicode symbols.
-- Symbol Keyboard: A keyboard layout featuring commonly used symbols and special characters.
-- Fraction Keyboard: A keyboard layout featuring fractions and mathematical symbols.
-- Currency Keyboard: A keyboard layout featuring currency symbols from around the world.
+- Symbol Keyboards: A keyboard layout featuring commonly used symbols and special characters.
 
 ## License
 This project is licensed under the GPL-3.0 license.
