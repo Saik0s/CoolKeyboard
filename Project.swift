@@ -27,7 +27,7 @@ let project = Project(
       name: "CoolKeyboard",
       platform: .iOS,
       product: .app,
-      bundleId: "com.igortarasenko.$(PRODUCT_NAME:rfc1034identifier)",
+      bundleId: "com.igortarasenko.Cool-Keyboard",
       deploymentTarget: .iOS(targetVersion: "14.0", devices: [.iphone, .ipad]),
       infoPlist: .extendingDefault(with: [
         "CFBundleURLTypes": [
@@ -61,7 +61,7 @@ let project = Project(
       name: "CoolKeyboardKeyboard",
       platform: .iOS,
       product: .appExtension,
-      bundleId: "com.igortarasenko.Cool-Keyboard.$(PRODUCT_NAME:rfc1034identifier)",
+      bundleId: "com.igortarasenko.Cool-Keyboard.Keyboard",
       infoPlist: .extendingDefault(with: [
         "CFBundleDisplayName": "Cool Keyboard",
         "NSExtension": [

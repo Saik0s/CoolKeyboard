@@ -3,104 +3,115 @@ import SwiftUI
 // MARK: - ContentView
 
 struct ContentView: View {
-  @StateObject private var keyboardState = KeyboardEnabledState(bundleId: "com.igortarasenko.Cool-Keyboard.CoolKeyboardKeyboard")
+  @State private var isKeyboardEnabled: Bool = checkIfKeyboardEnabled()
   @State private var text: String = ""
+  let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+
+
+  init() {
+    UITextView.appearance().backgroundColor = .clear
+  }
 
   var body: some View {
     NavigationView {
-      List {
-        Section(header: Text("Try it"), footer: Text("c: \(text.count)")) {
-          TextEditor(text: $text)
-            .frame(height: 100)
+      VStack(spacing: 16) {
+        Label {
+          Text(isKeyboardEnabled ? "Keyboard is enabled" : "Keyboard is not enabled")
+        } icon: {
+          isKeyboardEnabled ? Image(systemName: "checkmark.circle") : Image(systemName: "multiply.circle")
         }
-        Section(header: Text("Keyboard State"), footer: footerText) {
-          KeyboardEnabledLabel(
-            isEnabled: keyboardState.isEnabled,
-            enabledText: "Keyboard is enabled",
-            disabledText: "Keyboard not enabled"
-          )
-          KeyboardEnabledLabel(
-            isEnabled: keyboardState.isActive,
-            enabledText: "Keyboard is active",
-            disabledText: "Keyboard is not active"
-          )
-        }
-        Section(header: Text("Settings")) {
-          Button {
-            tryOpen(URL(string: UIApplication.openSettingsURLString))
-          } label: {
-            Label {
-              Text("System Settings")
-            } icon: {
-              Image(systemName: "gearshape")
+          .foregroundColor(isKeyboardEnabled ? Color(.systemGreen) : Color(.systemRed))
+          .padding()
+
+        if isKeyboardEnabled {
+          VStack(alignment: .leading, spacing: 8) {
+            Text("Try it")
+              .font(.headline)
+              .foregroundColor(Color(.tertiaryLabel))
+              .padding(.horizontal)
+
+            Group {
+              if #available(iOS 16.0, *) {
+                TextEditor(text: $text)
+                  .scrollContentBackground(.hidden)
+              } else {
+                TextEditor(text: $text)
+              }
+            }
+              .padding()
+              .background(
+                RoundedRectangle(cornerRadius: 16).fill(Color(.tertiarySystemGroupedBackground))
+                  .shadow(color: Color(.secondarySystemFill).opacity(0.5), radius: 12, x: 0, y: 8)
+              )
+
+            Text("c: \(text.count)")
+              .font(.caption)
+              .opacity(0.5)
+          }
+            .frame(maxHeight: .infinity)
+        } else {
+          Spacer()
+
+          VStack(spacing: 0) {
+            Text("In order to use the keyboard, you must first enable it in System Settings, then select it with 🌐 when you start typing.")
+              .padding()
+
+            Button {
+              openSettings()
+            } label: {
+              Label {
+                Text("Open Settings")
+              } icon: {
+                Image(systemName: "gearshape")
+              }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .font(.headline)
+                .foregroundColor(.white)
+                .background(Capsule().fill(Color(.systemGreen)))
             }
           }
+            .padding()
+            .background(
+              RoundedRectangle(cornerRadius: 16).fill(Color(.tertiarySystemGroupedBackground))
+                .shadow(color: Color(.secondarySystemFill).opacity(0.5), radius: 12, x: 0, y: 8)
+            )
+
+          Spacer()
         }
       }
-      .buttonStyle(.plain)
-      .navigationTitle("Cool Keyboard")
+        .padding(16)
+        .buttonStyle(.plain)
+        .background(Color(.secondarySystemGroupedBackground).ignoresSafeArea())
+        .navigationTitle("Cool Keyboard")
+        .navigationBarTitleDisplayMode(.inline)
     }
     .navigationViewStyle(.stack)
+      .onReceive(timer) { _ in
+        isKeyboardEnabled = checkIfKeyboardEnabled()
+      }
   }
 
-  var footerText: some View {
-    Text("You must enable the keyboard in System Settings, then select it with 🌐 when typing.")
+  func openSettings() {
+    let url = URL(string: UIApplication.openSettingsURLString)
+    guard let url else { return }
+    UIApplication.shared.open(url)
   }
-
-  /// Whether or not the opener can open the provided `url`.
-  func canOpen(_ url: URL) -> Bool {
-    #if os(iOS)
-      return app.canOpenURL(url)
-    #elseif os(macOS)
-      return true
-    #else
-      return failForUnsupportedPlatform()
-    #endif
-  }
-
-  /// Whether or not the opener can open the provided `url`.
-  func canOpen(_ url: URL?) -> Bool {
-    guard let url else { return false }
-    return canOpen(url)
-  }
-
-  /// Whether or not the opener can open the provided url.
-  func canOpen(urlString: String?) -> Bool {
-    canOpen(URL(string: urlString ?? ""))
-  }
-
-  /// Try opening the provided `url`.
-  func tryOpen(_ url: URL, completion: @escaping OpenUrlCompletion = { _ in }) {
-    #if os(iOS)
-      app.open(url, options: [:], completionHandler: completion)
-    #elseif os(macOS)
-      completion(workspace.open(url))
-    #else
-      failForUnsupportedPlatform()
-    #endif
-  }
-
-  /// Try opening the provided `url`.
-  func tryOpen(_ url: URL?, completion: @escaping OpenUrlCompletion = { _ in }) {
-    guard let url else { return completion(false) }
-    tryOpen(url, completion: completion)
-  }
-
-  /// Try opening the provided url.
-  func tryOpen(urlString: String?, completion: @escaping OpenUrlCompletion = { _ in }) {
-    tryOpen(URL(string: urlString ?? ""), completion: completion)
-  }
-
-  var app: UIApplication { .shared }
-
-  @discardableResult
-  func failForUnsupportedPlatform() -> Bool {
-    assertionFailure("UrlOpener: Unsupported platform")
-    return false
-  }
-
-  typealias OpenUrlCompletion = (_ success: Bool) -> Void
 }
+
+private func checkIfKeyboardEnabled() -> Bool {
+  let bundleId = "com.igortarasenko.Cool-Keyboard.Keyboard"
+  let keyboards = UserDefaults.standard.object(forKey: "AppleKeyboards") as? [String] ?? []
+
+  return keyboards.contains {
+    guard bundleId.hasSuffix("*") else {
+      return $0 == bundleId
+    }
+    let wildcard = bundleId.replacingOccurrences(of: "*", with: "")
+    return $0.hasPrefix(wildcard)
+  }
+}
+
 
 // MARK: - ContentView_Previews
 
