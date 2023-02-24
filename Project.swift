@@ -1,12 +1,15 @@
 import Foundation
 import ProjectDescription
 
+let version = "2.0.0"
+
 let projectSettings: SettingsDictionary = [
   "GCC_TREAT_WARNINGS_AS_ERRORS": "YES",
   // "SWIFT_TREAT_WARNINGS_AS_ERRORS": "YES",
   "CODE_SIGN_STYLE": "Automatic",
   "IPHONEOS_DEPLOYMENT_TARGET": "14.0",
   "MARKETING_VERSION": "2.0.0",
+  "CFBundleShortVersionString": version,
 ]
 
 let debugSettings: SettingsDictionary = [
@@ -55,6 +58,7 @@ let project = Project(
         "UILaunchScreen": [
           "UILaunchScreen": [:],
         ],
+        "CFBundleShortVersionString": version,
       ]),
       sources: .paths([.relativeToManifest("App/Sources/**")]),
       resources: [
@@ -71,6 +75,7 @@ let project = Project(
       bundleId: "com.igortarasenko.Cool-Keyboard.Keyboard",
       infoPlist: .extendingDefault(with: [
         "CFBundleDisplayName": "Cool Keyboard",
+        "CFBundleShortVersionString": version,
         "NSExtension": [
           "NSExtensionAttributes": [
             "PrimaryLanguage": "en-US",
